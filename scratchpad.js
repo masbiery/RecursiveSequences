@@ -12,7 +12,12 @@ function inputCss(){
 function addDivs(){
   var fibDiv = document.createElement('div');
   fibDiv.setAttribute('class','fibDiv');
+  
+  var pelDiv = document.createElement('div');
+  pelDiv.setAttribute('class','pelDiv');
+  
   document.querySelector('body').appendChild(fibDiv);
+  document.querySelector('body').appendChild(pelDiv);
 };
 
 
@@ -23,22 +28,22 @@ function fibHelper(n){
     fibNumber = 0;
     var text = document.createElement('p')
     text.textContent = 'Fib(' + n + ')=' + fibNumber;
-    div.appendChild(text);
+    div.appendChild(text)
   }
   else if(n===1){
     fibNumber = 1;
-    var text = document.createElement('p');
+    var text = document.createElement('p')
     text.textContent = 'Fib(' + n + ')=' + fibNumber;
     div.appendChild(text);
   }else{
     var leftChild = fibHelper(n-1);
-    leftChild.html.setAttribute('class', 'fib-left');
+    leftChild.html.setAttribute('class', 'leftDiv');
     
     var rightChild = fibHelper(n-2);
-    rightChild.html.setAttribute('class', 'fib-right');
+    rightChild.html.setAttribute('class', 'rightDiv');
     
     fibNumber = leftChild.value + rightChild.value;
-    var text = document.createElement('p');
+    var text = document.createElement('p')
     text.textContent = 'Fib(' + n + ')=' + fibNumber;
     div.appendChild(text);
     div.appendChild(leftChild.html);
@@ -49,9 +54,49 @@ function fibHelper(n){
 
 function fib(n, node){
   var tree = fibHelper(n);
-  node.appendChild(tree.html);
+  node.appendChild(tree.html)
   node.style = 'display: inline-block';
 }
 
 addDivs();
-fib(7, document.querySelector('.fibDiv'));
+fib(4, document.querySelector('.fibDiv'));
+
+function pelHelper(n){
+  var pelNumber;
+  var div = document.createElement('div');
+  if(n===0){
+    pelNumber = 0;
+    var text = document.createElement('p')
+    text.textContent = 'Pel(' + n + ')=' + pelNumber;
+    div.appendChild(text)
+  }
+  else if(n===1){
+    pelNumber = 1;
+    var text = document.createElement('p')
+    text.textContent = 'Pel(' + n + ')=' + pelNumber;
+    div.appendChild(text);
+  }else{
+    var leftChild = pelHelper(n-1);
+    leftChild.html.setAttribute('class', 'leftDiv');
+    
+    var rightChild = pelHelper(n-2);
+    rightChild.html.setAttribute('class', 'rightDiv');
+    
+    pelNumber = (2*leftChild.value) + rightChild.value;
+    var text = document.createElement('p')
+    text.textContent = 'Pel(' + n + ')=' + pelNumber;
+    div.appendChild(text);
+    div.appendChild(leftChild.html);
+    div.appendChild(rightChild.html);
+  }
+  return {'value' : pelNumber, 'html' : div}; 
+};
+
+function pel(n, node){
+  var tree = pelHelper(n);
+  node.appendChild(tree.html)
+  node.style = 'display: inline-block';
+}
+
+addDivs();
+pel(6, document.querySelector('.pelDiv'));
