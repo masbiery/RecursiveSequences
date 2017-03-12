@@ -157,6 +157,7 @@ function trib(n, node){
   node.style = 'display: inline-block';
 }
 
+document.title = "Recursive Sequence Trees";
 addDivs();
 fib(11, document.querySelector('.fibDiv'));
 pel(11, document.querySelector('.pelDiv'));
