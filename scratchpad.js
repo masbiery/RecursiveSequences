@@ -16,8 +16,12 @@ function addDivs(){
   var pelDiv = document.createElement('div');
   pelDiv.setAttribute('class','pelDiv');
   
+  var tribDiv = document.createElement('div');
+  tribDiv.setAttribute('class','tribDiv');
+  
   document.querySelector('body').appendChild(fibDiv);
   document.querySelector('body').appendChild(pelDiv);
+  document.querySelector('body').appendChild(tribDiv);
 };
 
 
@@ -52,14 +56,13 @@ function fibHelper(n){
   return {'value' : fibNumber, 'html' : div}; 
 };
 
+
 function fib(n, node){
   var tree = fibHelper(n);
   node.appendChild(tree.html)
   node.style = 'display: inline-block';
 }
 
-addDivs();
-fib(4, document.querySelector('.fibDiv'));
 
 function pelHelper(n){
   var pelNumber;
@@ -92,11 +95,69 @@ function pelHelper(n){
   return {'value' : pelNumber, 'html' : div}; 
 };
 
+
 function pel(n, node){
   var tree = pelHelper(n);
   node.appendChild(tree.html)
   node.style = 'display: inline-block';
 }
 
+
+function tribHelper(n){
+  var tribNumber;
+  var div = document.createElement('div');
+  if(n===0){
+    tribNumber = 0;
+    var text = document.createElement('p')
+    text.textContent = 'T(' + n + ')=' + tribNumber;
+    div.appendChild(text)
+  }
+  else if(n===1){
+    tribNumber = 0;
+    var text = document.createElement('p')
+    text.textContent = 'T(' + n + ')=' + tribNumber;
+    div.appendChild(text);
+  }
+  else if(n===2){
+    tribNumber = 1;
+    var text = document.createElement('p')
+    text.textContent = 'T(' + n + ')=' + tribNumber;
+    div.appendChild(text);
+  }else{
+    var leftChild = tribHelper(n-1);
+    leftChild.html.setAttribute('class', 'leftDiv');
+    
+    var centerChild = tribHelper(n-2);
+    centerChild.html.setAttribute('class', 'centerDiv');
+    
+    var rightChild = tribHelper(n-3);
+    rightChild.html.setAttribute('class', 'rightDiv');
+    
+    tribNumber = leftChild.value + rightChild.value + centerChild.value;
+    var text = document.createElement('p')
+    text.textContent = 'T(' + n + ')=' + tribNumber;
+    div.appendChild(text);
+    
+    div.appendChild(leftChild.html);
+    div.appendChild(centerChild.html);
+    div.appendChild(rightChild.html);
+    
+    leftChild.html.style = 'width: 33.3333%;';
+    rightChild.html.style = 'width: 33.3333%;';
+    centerChild.html.style = 'width: 33.3333%;';
+    
+  }
+  return {'value' : tribNumber, 'html' : div}; 
+};
+
+
+function trib(n, node){
+  var tree = tribHelper(n);
+  node.appendChild(tree.html)
+  node.style = 'display: inline-block';
+}
+
 addDivs();
-pel(6, document.querySelector('.pelDiv'));
+fib(11, document.querySelector('.fibDiv'));
+pel(11, document.querySelector('.pelDiv'));
+trib(11, document.querySelector('.tribDiv'));
