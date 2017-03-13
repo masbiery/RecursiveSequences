@@ -1,10 +1,51 @@
 function inputCss(){
   var style = document.createElement('style');
   style.textContent = 
-  "#fib{" + "\n" +
-  " color: rgb(0,0,255);" + "\n" +
-  " background: rgb(0,255,0);" + "\n" +
-  "}";
+    ".rightDiv{ " +
+		"	color: lightgray; " +
+		"	font-size: 10px; " +
+		"	float: right; " +
+		"	display: inline-block; " +
+		"	background-color: rgba(0,0,255,0.09); " +
+		"	width: 50%; " +	
+		"} " +
+		".leftDiv{ " +
+		"	color: lightgray; " +
+		"	font-size: 10px; " +
+		"	float: left; " +
+		"	display: inline-block; " +
+		"	background-color: rgba(0,0,255,0.09); " +
+		"	width: 50%; " +
+		"} " +
+		".centerDiv{ " +
+		"	color: lightgray; " +
+		"	font-size: 10px; " +
+		"	float: center; " +
+		"	display: inline-block; " +
+		"	background-color: rgba(0,0,255,0.09); " +
+		"	width: 50%; " +
+		"} " +
+		".fibDiv{ " +
+		"	color: lightgray; " +
+		"	margin: 10px; " +
+		"	width: 50000px; " +
+		"	text-align: center; " +
+		"	background-color: green; " +
+		"} " +
+		".pelDiv{ " +
+		"	color: lightgray; " +
+		"	margin: 10px; " +
+		"	width: 50000px; " +
+		"	text-align: center; " +
+		"	background-color: red; " +
+		"} " +
+		".tribDiv{ " +
+		"	color: lightgray; " +
+		"	margin: 10px; " +
+		"	width:600000px; " +
+		"	text-align: center; " +
+		"	background-color: teal; " +
+		"} ";
   document.querySelector('body').appendChild(style);
 };
 
@@ -157,6 +198,7 @@ function trib(n, node){
   node.style = 'display: inline-block';
 }
 
+inputCss();
 document.title = "Recursive Sequence Trees";
 addDivs();
 fib(11, document.querySelector('.fibDiv'));
