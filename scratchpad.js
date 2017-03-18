@@ -47,7 +47,7 @@ function inputCss(){
 		"	background-color: teal; " +
 		"} ";
   document.querySelector('body').appendChild(style);
-};
+}
 
 
 function addDivs(){
@@ -63,7 +63,7 @@ function addDivs(){
   document.querySelector('body').appendChild(fibDiv);
   document.querySelector('body').appendChild(pelDiv);
   document.querySelector('body').appendChild(tribDiv);
-};
+}
 
 
 function fibHelper(n){
@@ -71,13 +71,13 @@ function fibHelper(n){
   var div = document.createElement('div');
   if(n===0){
     fibNumber = 0;
-    var text = document.createElement('p')
+    var text = document.createElement('p');
     text.textContent = 'Fib(' + n + ')=' + fibNumber;
-    div.appendChild(text)
+    div.appendChild(text);
   }
   else if(n===1){
     fibNumber = 1;
-    var text = document.createElement('p')
+    var text = document.createElement('p');
     text.textContent = 'Fib(' + n + ')=' + fibNumber;
     div.appendChild(text);
   }else{
@@ -88,19 +88,19 @@ function fibHelper(n){
     rightChild.html.setAttribute('class', 'rightDiv');
     
     fibNumber = leftChild.value + rightChild.value;
-    var text = document.createElement('p')
+    var text = document.createElement('p');
     text.textContent = 'Fib(' + n + ')=' + fibNumber;
     div.appendChild(text);
     div.appendChild(leftChild.html);
     div.appendChild(rightChild.html);
   }
   return {'value' : fibNumber, 'html' : div}; 
-};
+}
 
 
 function fib(n, node){
   var tree = fibHelper(n);
-  node.appendChild(tree.html)
+  node.appendChild(tree.html);
   node.style = 'display: inline-block';
 }
 
@@ -110,13 +110,13 @@ function pelHelper(n){
   var div = document.createElement('div');
   if(n===0){
     pelNumber = 0;
-    var text = document.createElement('p')
+    var text = document.createElement('p');
     text.textContent = 'Pel(' + n + ')=' + pelNumber;
-    div.appendChild(text)
+    div.appendChild(text);
   }
   else if(n===1){
     pelNumber = 1;
-    var text = document.createElement('p')
+    var text = document.createElement('p');
     text.textContent = 'Pel(' + n + ')=' + pelNumber;
     div.appendChild(text);
   }else{
@@ -127,19 +127,19 @@ function pelHelper(n){
     rightChild.html.setAttribute('class', 'rightDiv');
     
     pelNumber = (2*leftChild.value) + rightChild.value;
-    var text = document.createElement('p')
+    var text = document.createElement('p');
     text.textContent = 'Pel(' + n + ')=' + pelNumber;
     div.appendChild(text);
     div.appendChild(leftChild.html);
     div.appendChild(rightChild.html);
   }
   return {'value' : pelNumber, 'html' : div}; 
-};
+}
 
 
 function pel(n, node){
   var tree = pelHelper(n);
-  node.appendChild(tree.html)
+  node.appendChild(tree.html);
   node.style = 'display: inline-block';
 }
 
@@ -149,19 +149,19 @@ function tribHelper(n){
   var div = document.createElement('div');
   if(n===0){
     tribNumber = 0;
-    var text = document.createElement('p')
+    var text = document.createElement('p');
     text.textContent = 'T(' + n + ')=' + tribNumber;
     div.appendChild(text)
   }
   else if(n===1){
     tribNumber = 0;
-    var text = document.createElement('p')
+    var text = document.createElement('p');
     text.textContent = 'T(' + n + ')=' + tribNumber;
     div.appendChild(text);
   }
   else if(n===2){
     tribNumber = 1;
-    var text = document.createElement('p')
+    var text = document.createElement('p');
     text.textContent = 'T(' + n + ')=' + tribNumber;
     div.appendChild(text);
   }else{
@@ -175,31 +175,50 @@ function tribHelper(n){
     rightChild.html.setAttribute('class', 'rightDiv');
     
     tribNumber = leftChild.value + rightChild.value + centerChild.value;
-    var text = document.createElement('p')
+    var text = document.createElement('p');
     text.textContent = 'T(' + n + ')=' + tribNumber;
     div.appendChild(text);
     
     div.appendChild(leftChild.html);
     div.appendChild(centerChild.html);
     div.appendChild(rightChild.html);
-    
-    leftChild.html.style = 'width: 33.3333%;';
-    rightChild.html.style = 'width: 33.3333%;';
-    centerChild.html.style = 'width: 33.3333%;';
-    
   }
   return {'value' : tribNumber, 'html' : div}; 
-};
+}
 
 
 function trib(n, node){
   var tree = tribHelper(n);
-  node.appendChild(tree.html)
+  node.appendChild(tree.html);
   node.style = 'display: inline-block';
 }
 
+function treeSelector(value, node){
+  if(node.classList.contains('fibDiv')){
+    fib(value, node);
+  }
+}
+
+function updateButton(){
+  
+}
+function addControl(node){
+  var slider = document.createElement('input');
+  slider.type = 'range';
+  slider.min = 0;
+  slider.max = 6;
+  node.appendChild(slider);
+  
+  var bttn = document.createElement('button');
+  bttn.type = 'button';
+  bttn.textContent = 'Generate Tree';
+  bttn.addEventListener('click', function() {
+    treeSelector(document.querySelector('input').value, node)
+  });
+ 
+  node.appendChild(bttn);
+}
 document.title = "Recursive Sequence Trees";
 addDivs();
-// fib(11, document.querySelector('.fibDiv'));
-// pel(11, document.querySelector('.pelDiv'));
-// trib(11, document.querySelector('.tribDiv'));
+addControl(document.querySelector('.fibDiv'));
+addControl(document.querySelector('.pelDiv'));
