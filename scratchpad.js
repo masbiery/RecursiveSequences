@@ -195,6 +195,11 @@ function trib(n, node){
 
 
 function treeSelector(n, node){
+  var i = node.childNodes.length;
+  while(i>2){
+    node.removeChild(node.lastChild);
+    i = node.childNodes.length;
+  }
   if(node.classList.contains('fibDiv')){
     fib(n, node);
   }
@@ -224,7 +229,7 @@ function addControl(node){
   var slider = document.createElement('input');
   slider.type = 'range';
   slider.min = 0;
-  slider.max = 6;
+  slider.max = 9;
   slider.value = 0;
   slider.addEventListener('change', function(){
     updateButton(bttn, node)
