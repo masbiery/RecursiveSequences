@@ -229,25 +229,25 @@ function addControl(node){
   var slider = document.createElement('input');
   slider.type = 'range';
   slider.min = 0;
-  slider.max = 9;
+  slider.max = 8;
   slider.value = 0;
-  slider.addEventListener('change', function(){
+  slider.addEventListener('input', function(){
     updateButton(bttn, node)
   });
   node.appendChild(slider);
   
   var bttn = document.createElement('button');
   bttn.type = 'button';
-  bttn.textContent = 'Generate Tree';
   bttn.addEventListener('click', function() {
     treeSelector(parseInt(node.querySelector('input').value), node)
   });
   node.appendChild(bttn);
   updateButton(bttn, node);
 }
+
+
 document.title = "Recursive Sequence Trees";
 addDivs();
-
 addControl(document.querySelector('.fibDiv'));
 addControl(document.querySelector('.pelDiv'));
 addControl(document.querySelector('.tribDiv'));

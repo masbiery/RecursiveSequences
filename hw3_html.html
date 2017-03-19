@@ -7,7 +7,6 @@
       .rightDiv {
       	color: lightgray;
       	font-size: 10px;
-      	float: right;
       	margin-left: 3px;
       	display: inline-block;
       	background-color: rgba(0,0,255,0.09);
@@ -16,14 +15,12 @@
       	color: lightgray;
       	font-size: 10px;
       	margin-right: 3px;
-      	float: left;
       	display: inline-block;
       	background-color: rgba(0,0,255,0.09);
       }
       .centerDiv {
       	color: lightgray;
       	font-size: 10px;
-      	float: center;
       	display: inline-block;
       	background-color: rgba(0,0,255,0.09);
       	margin-right: 3px;
@@ -31,21 +28,33 @@
       }
       .fibDiv {
       	color: lightgray;
+      	position:relative;
       	margin: 10px;
       	text-align: center;
       	background-color: green;
+      	min-width: 2100px;
       }
       .pelDiv {
       	color: lightgray;
       	margin: 10px;
       	text-align: center;
       	background-color: red;
+      	min-width: 2100px;
       }
       .tribDiv {
       	color: lightgray;
       	margin: 10px;
       	text-align: center;
       	background-color: teal;
+      	min-width: 2100px;
+      }
+      input{
+         position: relative;
+         left: -800px;
+      }
+      button{
+         position: relative;
+         left: -800px;
       }
    </style>
 </head>
