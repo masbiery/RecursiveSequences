@@ -193,32 +193,56 @@ function trib(n, node){
   node.style = 'display: inline-block';
 }
 
-function treeSelector(value, node){
+
+function treeSelector(n, node){
   if(node.classList.contains('fibDiv')){
-    fib(value, node);
+    fib(n, node);
+  }
+  if(node.classList.contains('pelDiv')){
+    pel(n, node);
+  }
+  if(node.classList.contains('tribDiv')){
+    trib(n, node);
   }
 }
 
-function updateButton(){
-  
+
+function updateButton(button, node){
+   if(node.classList.contains('fibDiv')){
+    button.textContent = "fib(" + node.querySelector('input').value + ")";
+  }
+  if(node.classList.contains('pelDiv')){
+    button.textContent = "pel(" + node.querySelector('input').value + ")";
+  }
+  if(node.classList.contains('tribDiv')){
+    button.textContent = "trib(" + node.querySelector('input').value + ")";
+  }
 }
+
+
 function addControl(node){
   var slider = document.createElement('input');
   slider.type = 'range';
   slider.min = 0;
   slider.max = 6;
+  slider.value = 0;
+  slider.addEventListener('change', function(){
+    updateButton(bttn, node)
+  });
   node.appendChild(slider);
   
   var bttn = document.createElement('button');
   bttn.type = 'button';
   bttn.textContent = 'Generate Tree';
   bttn.addEventListener('click', function() {
-    treeSelector(document.querySelector('input').value, node)
+    treeSelector(parseInt(node.querySelector('input').value), node)
   });
- 
   node.appendChild(bttn);
+  updateButton(bttn, node);
 }
 document.title = "Recursive Sequence Trees";
 addDivs();
+
 addControl(document.querySelector('.fibDiv'));
 addControl(document.querySelector('.pelDiv'));
+addControl(document.querySelector('.tribDiv'));
